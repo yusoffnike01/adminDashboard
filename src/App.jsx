@@ -1,40 +1,39 @@
 import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
+import Home from './pages/home/Home'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Login from './pages/login/Login';
+import List from './pages/list/List';
+import New from './pages/new/New';
+import Single from './pages/single/Single';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className='App'>
+     <BrowserRouter>
+     <Routes>
+       <Route path='/'>
+         <Route index element={<Home/>}/>
+         <Route path='login' element={<Login/>}/>
+         <Route path='users'>
+            <Route index element={<List/>}/>
+            <Route path=":userID" element={<Single/>}/>
+            <Route path="new" element={<New/>}/>
+         </Route>
+         <Route path='products'>
+           <Route index element={<List/>}/>
+           <Route path=":productId" element={<Single/>}/>
+           <Route path="new" element={<New/>}/> 
+         </Route>
+       </Route>
+     </Routes>
+     </BrowserRouter>
     </div>
   )
 }
