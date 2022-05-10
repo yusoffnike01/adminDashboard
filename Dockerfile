@@ -1,16 +1,24 @@
 # Builder
-FROM  --platform=linux/amd64 node:16.3.0-slim AS builder
-RUN apt-get update
-RUN apt-get install -y openssl
+FROM node:16.3.0-alpine AS builder
 
-WORKDIR /app
-COPY package.json .
-COPY yarn.lock .
-RUN yarn install
+WORKDIR /usr/app
+
+COPY package.json yarn.lock ./
+
+RUN yarn
+
 COPY . .
-RUN yarn build
 
-FROM nginx:1.21.6-alpine as production-stage
-RUN mkdir /app
-COPY --from=build-stage /app/dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
+# Production Builder
+FROM node:16.3.0-alpine AS production
+
+WORKDIR /usr/app
+
+COPY --from=builder /usr/app /usr/app/
+
+ARG VITE_API_URL
+ENV VITE_API_URL=${VITE_API_URL}
+
+EXPOSE 5000
+
+RUN yarn build
