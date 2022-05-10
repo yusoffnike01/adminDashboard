@@ -16,7 +16,7 @@ const List =()=>{
     {
       id: 1,
       product: "ASUS ROG STRIX",
-      img: "",
+      img: "https://www.notebookcheck.net/uploads/tx_nbc2/ASUS_D509DA-BR128_01.jpg",
       customer: "Yusoff",
       date: "1 March",
       amount: 2000,
