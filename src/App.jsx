@@ -10,6 +10,7 @@ import Login from './pages/login/Login';
 import List from './pages/list/List';
 import New from './pages/new/New';
 import Single from './pages/single/Single';
+import { productIpunts, userInputs } from './formSource';
 
 function App() {
 
@@ -24,12 +25,12 @@ function App() {
          <Route path='users'>
             <Route index element={<List/>}/>
             <Route path=":userID" element={<Single/>}/>
-            <Route path="new" element={<New/>}/>
+            <Route path="new" element={<New inputs={userInputs} title="Add New Users"/>}/>
          </Route>
          <Route path='products'>
            <Route index element={<List/>}/>
            <Route path=":productId" element={<Single/>}/>
-           <Route path="new" element={<New/>}/> 
+           <Route path="new" element={<New inputs={productIpunts} title="Add New Product"/>}/> 
          </Route>
        </Route>
      </Routes>
