@@ -11,12 +11,13 @@ import List from './pages/list/List';
 import New from './pages/new/New';
 import Single from './pages/single/Single';
 import { productIpunts, userInputs } from './formSource';
+import "./style/dark.scss";
 
 function App() {
 
 
   return (
-    <div className='App'>
+    <div className='App dark'>
      <BrowserRouter>
      <Routes>
        <Route path='/'>
