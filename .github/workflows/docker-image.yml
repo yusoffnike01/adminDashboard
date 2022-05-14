@@ -46,7 +46,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          password: kljdsadkj324klK232k
+          password: ${{ secrets.SSH_PASSWORD }}
           
           
           
