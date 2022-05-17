@@ -48,8 +48,10 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
-            cd /root
-            touch testing
+            cd /root/dashboard
+            docker-compose down
+            docker pull $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest
+            docker-compose up -d
           
           
 
