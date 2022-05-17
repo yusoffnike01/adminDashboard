@@ -50,6 +50,7 @@ jobs:
           script: | 
             cd /root/dashboard
             docker-compose down
+            docker rmi $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest
             docker pull $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest
             docker-compose up -d
           
